@@ -16,7 +16,7 @@ import React, { useRef, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import toast from "react-hot-toast";
 import { FaChevronDown, FaChevronUp, FaEye, FaEyeSlash } from "react-icons/fa";
-import user_details_transfare from '../../../components/user_details_transfare'
+//import user_details_transfare from '../../../components/user_details_transfare'
 
 export default function Page() {
   const router = useRouter();
