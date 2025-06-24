@@ -16,6 +16,7 @@ import React, { useRef, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import toast from "react-hot-toast";
 import { FaChevronDown, FaChevronUp, FaEye, FaEyeSlash } from "react-icons/fa";
+import user_details_transfare from '../../../components/user_details_transfare'
 
 export default function Page() {
   const router = useRouter();
@@ -171,6 +172,8 @@ export default function Page() {
           setPincode(parsedUser?.pincode || "");
           setState(parsedUser?.state || "");
           console.log("hello", response);
+          
+
         }
       } catch (error) {
         toast.error(error.message);
@@ -339,7 +342,7 @@ export default function Page() {
                     "linear-gradient(to right, #339c8d, #83c961, #9fd94e)",
                 }}
               >
-                H
+                {userInfo?.email[0]}
                 <button className="absolute bottom-2 md:bottom-5 -right-4 border-2 md:border-4 border-white bg-gray-500 rounded-full p-2">
                   <Image
                     src="/icons/edit.png"
