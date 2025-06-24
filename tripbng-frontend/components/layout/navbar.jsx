@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { HamburgerMenuIcon, Cross2Icon } from "@radix-ui/react-icons";
+
 import { FaChevronDown } from "react-icons/fa";
 import {
   Select,
@@ -25,7 +26,7 @@ import {
   VisaIcon,
 } from "@/components/icon";
 import { cn } from "@/lib/utils";
-import LogoMain from "@/public/logo.png";
+import LogoMain from "@/public/logoMain.png";
 import { FiLogOut } from "react-icons/fi";
 
 const navItems = [
@@ -71,6 +72,10 @@ const navItems = [
   },
 ];
 
+const userString = localStorage.getItem("user");
+const user = JSON.parse(userString);
+console.log(user);
+
 export default function Navbar({ isFixed, showTabsInNav }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -78,7 +83,7 @@ export default function Navbar({ isFixed, showTabsInNav }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isTop, setIsTop] = useState(true);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const transparentNavPages = ["/", "/hotel", "/bus", "/holiday", "/visa"];
+  const transparentNavPages = ["/", "/hotel", "/bus", "/holiday", "/visa", "/login"];
 
   const shouldHaveTransparentNav = transparentNavPages.includes(pathname);
 
@@ -130,10 +135,10 @@ export default function Navbar({ isFixed, showTabsInNav }) {
         <SelectValue
           placeholder={
             <span className="text-sm flex items-center gap-3">
-              <span className="bg-green-500 text-white font-semibold h-7 w-7 text-center rounded-full flex items-center justify-center">
-                H
+              <span className="bg-blue-500 text-white font-semibold h-7 w-7 text-center rounded-full flex items-center justify-center">
+                {user.email[0]}
               </span>
-              <span className="font-semibold text-lg">Hi, Hetuk</span>
+              <span className="font-semibold text-lg">Hi, {user.email}</span>
               <FaChevronDown className="text-gray-600" />
             </span>
           }
@@ -202,7 +207,7 @@ export default function Navbar({ isFixed, showTabsInNav }) {
           : "relative bg-white"
       }`}
     >
-      <div className="md:container flex justify-between items-center py-4">
+      <div className="md:container flex justify-between items-center py-4 ">
         <Link href={"/"}>
           <Image
             src={LogoMain}
@@ -271,11 +276,16 @@ export default function Navbar({ isFixed, showTabsInNav }) {
                     placeholder={
                       <span className="text-sm text-gray-700 flex items-center gap-3">
                         <span className="gap-1 flex items-center">
-                          <span className="bg-green-500 text-white font-semibold h-7 w-7 text-center rounded-full flex items-center justify-center">
-                            H
+                          <span 
+                          style={{
+                            background: 'radial-gradient(circle,#2E8299)',
+                            color:'white'
+                          }}
+                          className="h-7 w-7 text-center rounded-full flex items-center justify-center">
+                            {user.email[0]}
                           </span>
                           <span className="font-semibold text-lg">
-                            Hi, {user?.name}
+                            Hi, {user.email}
                           </span>
                         </span>
                         <span>
@@ -355,8 +365,8 @@ export default function Navbar({ isFixed, showTabsInNav }) {
             </div>
           ) : (
             <Link href="/login">
-              <button className="rounded-md bg-yellow text-white font-semibold p-2">
-                Login or Signup
+              <button className="bg-gradient-to-r from-[#046994] via-[#57c785] to-[#046994] bg-clip-text text-transparent font-semibold p-2">
+                Login | Signup
               </button>
             </Link>
           )}
@@ -386,7 +396,7 @@ export default function Navbar({ isFixed, showTabsInNav }) {
                     toggleDrawer();
                   }}
                 >
-                  Logout
+                  Logout  
                 </button>
               </>
             ) : (
