@@ -791,14 +791,17 @@ export default function Page() {
       <p className="md:text-sm text-gray-500">
         {AirlineCode} {FlightNumber}
       </p>
-      <p className="md:text-sm text-blue-500 font-medium hidden md:block">
+      <p
+        className="md:text-sm font-medium hidden md:block bg-gradient-to-r from-[#046994] via-[#57c785] to-white bg-clip-text text-transparent"
+      >
         Economy
       </p>
-      <p className="text-sm text-green-600 hidden md:block">
-        {seatAvailability} seat(s) available
+      <p className="text-sm hidden md:block">
+        {seatAvailability || 0} seat(s) available
       </p>
     </div>
   );
+  
 
   return (
     <DropdownProvider>
@@ -1603,8 +1606,8 @@ export default function Page() {
                                       <div className="flex md:flex-row  items-center justify-start w-full gap-3  ">
                                         <img
                                           src={flight.AirlineImage}
-                                          width="35"
-                                          height="35"
+                                          width="40"
+                                          height="40"
                                           loading="eager"
                                           style={{
                                             objectFit: "contain",
@@ -1917,7 +1920,7 @@ export default function Page() {
                                         className="md:w-8 w-6"
                                       />
                                       <h2 className="md:font-semibold md:text-lg">
-                                        {flight.AirlineName}
+                                        {flight.AirlineName} 
                                       </h2>
                                     </div>
                                     <AirlineDetails
@@ -1926,7 +1929,7 @@ export default function Page() {
                                       seatAvailability={
                                         flight.Amount.Seats_Available
                                       }
-                                    />
+                                    />  
                                   </div>
 
                                   <div className="text-center w-full md:p-0 p-1">
